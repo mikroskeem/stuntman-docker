@@ -24,4 +24,8 @@ COPY --from=0 /opt/stunserver /opt/stunserver
 RUN useradd -s /bin/false -d / stun
 
 USER stun
+EXPOSE 3478/tcp
+EXPOSE 3478/udp
+HEALTHCHECK CMD /opt/stunserver/stunclient localhost
+
 CMD ["/opt/stunserver/stunserver"]
